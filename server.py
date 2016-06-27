@@ -24,7 +24,8 @@ def description(id):
 def update():
 	query = "SELECT * FROM notes"
 	notes = mysql.query_db(query)
-	return jsonify(notes=notes)
+	print "/n/n/n/n/n/n" , notes
+	return render_template('partial.html', notes=notes)
 
 
 @app.route('/new', methods=['POST'])
