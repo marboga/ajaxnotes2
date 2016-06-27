@@ -15,6 +15,7 @@
 		 	$(document).on("blur", "#description", function(){
 				console.log('blurry')
 				$.post($('.desc_update_form').attr('action'), $('.desc_update_form').serialize() , function(res){
+					console.log('back')
 					$.get('/update', function(res) {
 						// console.log('update', res)
 		            $('#container').html(res);
