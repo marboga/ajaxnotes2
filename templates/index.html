@@ -7,17 +7,15 @@
 		 <script type="text/javascript">
 		 	$(document).ready(function(){
 				$.get('/update', function(res) {
-					// console.log('update', res)
 					$('#container').html(res);
 				});
 			})
 
-		 	$(document).on("blur", "#description", function(){
-				console.log('blurry')
-				$.post($('.desc_update_form').attr('action'), $('.desc_update_form').serialize() , function(res){
+		 	$(document).on("blur", ".description", function(){
+				console.log('blurry', $(this).attr('id'))
+				$.post('/desc/'+ $(this).attr('id'), $(this).serialize() , function(res){
 					console.log('back')
 					$.get('/update', function(res) {
-						// console.log('update', res)
 		            $('#container').html(res);
 					});
 				})
@@ -26,24 +24,28 @@
 			$(document).on("submit", ".newtitle", function(){
 				console.log(this)
 				$.post('/new', $(this).serialize(), function(res){
-
+					$('.titleinput').val('')
 					$.get('/update', function(res) {
-						// console.log('update', res)
 		            $('#container').html(res);
 					});
 				})
 				return false
-
 			})
-			$(document).on('click', "a", function(){
+			$(document).on('click', "a.deleter", function(){
 				console.log('a tag clicked')
 				$.get($(this).attr('href'), function(res){
 					console.log('deleting')
 					$.get('/update', function(res) {
-						// console.log('update', res)
 		            $('#container').html(res);
 					});
 				})
+				return false
+			})
+			$(document).on('click', "a.pageturner", function(){
+				console.log('a tag clicked')
+				$.get($(this).attr('href'), function(res) {
+	            $('#container').html(res);
+				});
 				return false
 			})
 		 </script>
@@ -58,7 +60,7 @@
 
 
 		<form class="newtitle" action="/new" method="post">
-			<input type="text" name="title" value="" placeholder="title">
+			<input class="titleinput" type="text" name="title" value="" placeholder="title">
 			<input type="submit" name="submit" value="add new note">
 		</form>
 	</body>
