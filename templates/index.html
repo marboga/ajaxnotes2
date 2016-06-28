@@ -11,13 +11,16 @@
 			  });
 			})
 			$(document).on('submit', '.new_title', function(res){
-				
-				console.log(res)
-				$.get('/update', function(res){
-					$('#partial').html(res)
+				console.log($(this))
+				$.post('/new', $(this).serialize(), function(res){
+					$('.titleinput').val('')
+					$.get('/update', function(res) {
+		            $('#partial').html(res);
+					});
 				})
 				return false
 			})
+			$(document).on('blur', )
 		</script>
 	</head>
 	<body>
@@ -27,7 +30,7 @@
 
 		</div>
 		<form class="new_title" action="/new" method="post">
-			<input type="text" name="title" value="">
+			<input class="titleinput" type="text" name="title" value="">
 			<input type="submit" name="submit" value="create new note">
 		</form>
 	</body>
