@@ -1,9 +1,10 @@
 {% if notes %}
 	{% for note in notes %}
 	<h3>{{note['title']}}</h3>
-	<form class="desc" action="/description" method="post">
-		<textarea name="description" rows="4" cols="40">{{note['description']}}
+	<form class="desc" action="/desc/{{note['id']}}" method="post">
+		<textarea name="description" id="{{note['id']}}" rows="4" cols="40">{{note['description']}}
 		</textarea>
 	</form>
+	<a class="delete" href="/delete/{{note['id']}}">delete</a>
 	{% endfor %}
 {% endif %}

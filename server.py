@@ -25,6 +25,23 @@ def new():
 	mysql.query_db(query, data)
 	return redirect('/update')
 
+@app.route('/desc/<id>', methods=['POST'])
+def description(id):
+	query = "UPDATE notes SET description = :description, updated_at = NOW() WHERE id = :id LIMIT 1"
+	data = {
+		'description': request.form['description'],
+		'id': id
+	}
+	mysql.query_db(query, data)
+	return redirect('/update')
 
+@app.route('/delete/<id>')
+def delete(id):
+	query = "DELETE FROM notes WHERE id= :id LIMIT 1"
+	data = {
+		'id': id
+	}
+	mysql.query_db(query, data)
+	return redirect('/update')
 
 app.run(debug=True)

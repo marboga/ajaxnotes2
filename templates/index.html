@@ -20,7 +20,25 @@
 				})
 				return false
 			})
-			$(document).on('blur', )
+			$(document).on("blur", ".desc", function(){
+				console.log($(this))
+				$.post($(this).attr('action'), $(this).serialize() , function(res){
+					console.log('back')
+					$.get('/update', function(res) {
+		            $('#partial').html(res);
+					});
+				})
+				return false
+			})
+			$(document).on('click', ".delete", function(){
+					console.log('clicked')
+					$.get($(this).attr('href'), function(res){
+						$.get('/update', function(res) {
+			            $('#partial').html(res);
+						});
+					})
+					return false
+				})
 		</script>
 	</head>
 	<body>
