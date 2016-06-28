@@ -1,3 +1,8 @@
+{% if pages %}
+	{% for page in pages %}
+		<a href="/update/{{page}}">{{page}}</a>
+	{% endfor %}
+{%endif%}
 {% if notes %}
 	{% for note in notes %}
 	<h3>{{note['title']}}</h3>
