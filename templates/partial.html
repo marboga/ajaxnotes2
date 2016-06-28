@@ -1,0 +1,9 @@
+{% if notes %}
+	{% for note in notes %}
+	<h3>{{note['title']}}</h3>
+	<form class="desc" action="/description" method="post">
+		<textarea name="description" rows="4" cols="40">{{note['description']}}
+		</textarea>
+	</form>
+	{% endfor %}
+{% endif %}
